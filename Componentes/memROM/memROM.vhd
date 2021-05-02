@@ -19,5 +19,8 @@ constant ROM: ROMvector := (
     instrucao1
 );
 begin
-    instrucao <= "00000000";
+	process(PC_endereco)
+	begin
+    instrucao <= ROM(conv_integer(PC_endereco));
+	end process;
 end Behavior;
