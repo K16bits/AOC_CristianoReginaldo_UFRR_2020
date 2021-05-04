@@ -44,29 +44,51 @@ component unidadeDControle is port(
 );
 end component;
 
+component registradores is port(
+    regisA, regisB : in std_logic_vector(1 downto 0);
+    dadoA,dadoB : out std_logic_vector(1 downto 0);
+    escRegi : in std_logic_vector(1 downto 0) 
+);
+end component;
+
+component multiplex2x1 is 
+port(
+    A,B : in std_logic_vector(1 downto 0);
+    Sel: in std_logic;
+    S : out std_logic_vector(1 downto 0)
+);
+end component;
+
 signal clock1 : std_logic;
 signal aux1 : std_logic_vector(7 downto 0);
 signal saida1 : std_logic_vector(7 downto 0);
 signal saida2 : std_logic_vector(7 downto 0);
 
--- Variaveis para receber os bits separados da saida da ROM para jogar na unidade de controle
-signal partOP : std_logic_vector (7 downto 4);
-signal partRS : std_logic_vector (3 downto 2);
-signal partRT : std_logic_vector (1 downto 0);
+-- divisao de bits para a unidade de controle
+signal bitControle : std_logic_vector (7 downto 4);
+signal registradoA : std_logic_vector (3 downto 2);
+signal registradoB : std_logic_vector (1 downto 0);
 ------------------------------------------------
-
+signal dataA : std_logic_vector (1 downto 0);
+signal dataB : std_logic_vector (1 downto 0);
+------------------------------------------------
+signal auxControleRegis : std_logic;
+signal saidaDmult2x : std_logic_vector (1 downto 0);
+signal registradoFake : std_logic_vector (1 downto 0);
+-------------------------------------------------
 signal instrucaoROM : std_logic_vector(7 downto 0);
 
 begin
-    auxFIO1 : PC port map(clock1,aux1,saida1);
-    auxFIO2 : sum4 port map(saida1,"00000100");
-    auxFIO3 : memROM port map(saida1,saida2);
+    Pc_para_MemoriaInstru : PC port map(clock1,aux1,saida1);
+    somador4bits : sum4 port map(saida1,"00000100");
+    Memoria_DivisaoBits : memROM port map(saida1,saida2);
+	
+    --Divisão de bits
+	bitControle <= saida2(7 downto 4);
+	registradoA <= saida2(3 downto 2);
+	registradoB <= saida2(1 downto 0);
 	 
-    --- Divisão de bits
-	 partOP <= saida2(7 downto 4); 
-	 partRS <= saida2(3 downto 2);
-	 partRT <= saida2(1 downto 0);
-	 
-    auxFIO4 : unidadeDControle port map(clock1,partOP);
-	 
+    unidadedecontrole : unidadeDControle port map (clock1,bitControle);
+	registradoresConexao : registradores port map (registradoA,registradoB,dataA,datab,saidaDmult2x);
+    opmultiplexRegis : multiplex2x1 port map (registradoB,registradoFake,'0',saidaDmult2x);
 end behavior;
