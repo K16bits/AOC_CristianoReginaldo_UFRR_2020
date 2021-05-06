@@ -59,6 +59,13 @@ port(
 );
 end component;
 
+
+component extender4x8 is port(
+    entrada : in std_logic_vector(3 downto 0);
+    saida : out std_logic_vector(7 downto 0)
+);
+end component;
+
 signal clock1 : std_logic;
 signal aux1 : std_logic_vector(7 downto 0);
 signal saida1 : std_logic_vector(7 downto 0);
@@ -68,6 +75,8 @@ signal saida2 : std_logic_vector(7 downto 0);
 signal bitControle : std_logic_vector (7 downto 4);
 signal registradoA : std_logic_vector (3 downto 2);
 signal registradoB : std_logic_vector (1 downto 0);
+----------------------- Endereço + extensor------------------
+signal enderecobits : std_logic_vector (3 downto 0);
 ------------------------------------------------
 signal dataA : std_logic_vector (1 downto 0);
 signal dataB : std_logic_vector (1 downto 0);
@@ -87,7 +96,9 @@ begin
 	bitControle <= saida2(7 downto 4);
 	registradoA <= saida2(3 downto 2);
 	registradoB <= saida2(1 downto 0);
-	 
+    enderecobits <= saida2(3 downto 0); ----------------------- Endereço + extensor------------------
+    -----------------------------------------------------------------------------------------------------
+    enderecoComExtensor : extender4x8 port map(enderecobits);
     unidadedecontrole : unidadeDControle port map (clock1,bitControle);
 	registradoresConexao : registradores port map (registradoA,registradoB,dataA,datab,saidaDmult2x);
     opmultiplexRegis : multiplex2x1 port map (registradoB,registradoFake,'0',saidaDmult2x);
