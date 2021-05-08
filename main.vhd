@@ -33,13 +33,13 @@ end component;
 component unidadeDControle is port(
     clock:        in std_logic;
     entrada4bits: in std_logic_vector(3 downto 0);
-    opULA:     out std_logic_vector(3 downto 0);
+    opULA:     out std_logic_vector(1 downto 0);
     origULA: out std_logic;
     memLer: out std_logic;
     memEsc: out std_logic;
     mem_para_reg: out std_logic;
     regEsc: out std_logic;
-    branch: out std_logic;
+    dvc: out std_logic;
     jump:   out std_logic
 );
 end component;
@@ -85,7 +85,7 @@ end component;
 component ula is port (
     entradaA : in std_logic_vector(7 downto 0);
     entradaB : in std_logic_vector(7 downto 0);
-    opULA : in std_logic_vector(2 downto 0);
+    opULA : in std_logic_vector(1 downto 0);
     zero : out std_logic;
     resultado : out std_logic_vector(7 downto 0)
 );
@@ -122,6 +122,17 @@ signal dataB_saida : std_logic_vector(7 downto 0);
 signal saidaResultULA : std_logic_vector(7 downto 0);
 signal zeroULA : std_logic;
 
+----------------------- Unidade de controle -----------------------
+signal opUlaOUT : std_logic_vector (1 downto 0);
+signal origULAOUT : std_logic;
+signal memLerOUT : std_logic;
+signal memEscOUT : std_logic;
+signal mem_para_regOUT : std_logic;
+signal regEscOUT : std_logic;
+signal dvcOUT : std_logic;
+signal jumpOUT : std_logic;
+--------------------------------------------------------------------
+
 begin
     Pc_para_MemoriaInstru : PC port map(clock1,aux1,saida1);
     somador4bits : sum4 port map(saida1,"00000100");
@@ -132,9 +143,12 @@ begin
 	registradoA <= saida2(3 downto 2);
 	registradoB <= saida2(1 downto 0);
     enderecobits <= saida2(3 downto 0); ----------------------- Endereço + extensor------------------
+
     -----------------------------------------------------------------------------------------------------
     enderecoComExtensor : extender4x8 port map(enderecobits,enderecobits_saida);
-    unidadedecontrole : unidadeDControle port map (clock1,bitControle);
+    unidadedecontrole : unidadeDControle port map (clock1,bitControle,opUlaOUT,origULAOUT,memLerOUT,memEscOUT,mem_para_regOUT,regEscOUT,dvcOUT,jumpOUT);
+
+
     -------------------EXTENSOR : 2 bits para 8 bits para a memoria -----------------------------------
     extensor2x8dadoA : extender2x8 port map(registradoA,dataA);
     extensor2x8dadoB : extender2x8 port map(registradoB,dataB);
@@ -144,7 +158,7 @@ begin
     multiplexDepoisRegis : multiplex8bits2x1 port map (dataB_saida,enderecobits_saida,'0',saidaMultpexUla); ------------- Ligação com o extensor de 8 bits
 
     ------------------------------------------------------------------------------------------------------
-    ligacaoULA : ula port map(dataA_saida,saidaMultpexUla,"000",zeroULA,saidaResultULA);
+    ligacaoULA : ula port map(dataA_saida,saidaMultpexUla,opUlaOUT,zeroULA,saidaResultULA);
     -------------------------------------------------------------------------------------------------------
 
     end behavior;
