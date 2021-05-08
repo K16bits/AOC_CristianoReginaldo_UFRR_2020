@@ -81,6 +81,16 @@ component extender2x8 is port (
 );
 end component;
 
+
+component ula is port (
+    entradaA : in std_logic_vector(7 downto 0);
+    entradaB : in std_logic_vector(7 downto 0);
+    opULA : in std_logic_vector(2 downto 0);
+    zero : out std_logic;
+    resultado : out std_logic_vector(7 downto 0)
+);
+end component;
+
 signal clock1 : std_logic;
 signal aux1 : std_logic_vector(7 downto 0);
 signal saida1 : std_logic_vector(7 downto 0);
@@ -93,7 +103,7 @@ signal registradoB : std_logic_vector (1 downto 0);
 ----------------------- Endereço + extensor------------------
 signal enderecobits : std_logic_vector (3 downto 0);
 signal enderecobits_saida : std_logic_vector (7 downto 0);
-signal fakesignalEnder : std_logic_vector (7 downto 0);
+signal saidaMultpexUla : std_logic_vector (7 downto 0);
 ------------------------------------------------
 signal dataA : std_logic_vector (7 downto 0);
 signal dataB : std_logic_vector (7 downto 0);
@@ -107,6 +117,10 @@ signal instrucaoROM : std_logic_vector(7 downto 0);
 
 signal dataA_saida : std_logic_vector(7 downto 0);
 signal dataB_saida : std_logic_vector(7 downto 0);
+
+-------------------------------Depois do registrador -------------------------------
+signal saidaResultULA : std_logic_vector(7 downto 0);
+signal zeroULA : std_logic;
 
 begin
     Pc_para_MemoriaInstru : PC port map(clock1,aux1,saida1);
@@ -127,5 +141,10 @@ begin
     -------------------------------------------------------------------------------------
     multiplexAntesRegis : multiplex2x1 port map (registradoB,registradoFake,'0',saidaDmult2x);
 	registradoresConexao : registradores port map (registradoA,saidaDmult2x,dataA,dataB,dataA_saida,dataB_saida,"00");
-    multiplexDepoisRegis : multiplex8bits2x1 port map (dataB_saida,enderecobits_saida,'0',fakesignalEnder); ------------- Ligação com o extensor de 8 bits
-end behavior;
+    multiplexDepoisRegis : multiplex8bits2x1 port map (dataB_saida,enderecobits_saida,'0',saidaMultpexUla); ------------- Ligação com o extensor de 8 bits
+
+    ------------------------------------------------------------------------------------------------------
+    ligacaoULA : ula port map(dataA_saida,saidaMultpexUla,"000",zeroULA,saidaResultULA);
+    -------------------------------------------------------------------------------------------------------
+
+    end behavior;
