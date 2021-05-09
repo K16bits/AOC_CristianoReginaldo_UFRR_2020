@@ -1,0 +1,12 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity main is
+    port(
+        A0,B0 : in std_logic;
+        S0: out std_logic
+    );
+    end entity;
+
+architecture behavior of main is
+
