@@ -48,7 +48,7 @@ component registradores is port(
     regisA, regisB : in std_logic_vector(1 downto 0);
     dadoA,dadoB : in std_logic_vector(7 downto 0);
     dadoA_saida,dadoB_saida : out std_logic_vector(7 downto 0);
-    escRegi : in std_logic_vector(1 downto 0)
+    escRegi : in std_logic_vector(7 downto 0)
 );
 end component;
 
@@ -88,6 +88,24 @@ component ula is port (
     opULA : in std_logic_vector(1 downto 0);
     zero : out std_logic;
     resultado : out std_logic_vector(7 downto 0)
+);
+end component;
+
+component andgate is 
+port(
+    A_in : in std_logic;
+    B_in : in std_logic;
+    S : out std_logic
+);
+end component;
+
+component memRAM is port(
+    clock: in std_logic;
+    endereco : in std_logic_vector(7 downto 0);
+    escritaDado : in std_logic_vector(7 downto 0);
+    memLer : in std_logic;
+    memEsc : in std_logic;
+    saidaLeituraDado : out std_logic_vector(7 downto 0)
 );
 end component;
 
@@ -133,9 +151,22 @@ signal dvcOUT : std_logic;
 signal jumpOUT : std_logic;
 --------------------------------------------------------------------
 
+signal saidaAND : std_logic;
+-----------------TOPO DO PROCESSADOR---------------------------------
+
+signal saidaDoSomador : std_logic_vector(7 downto 0);
+signal saidaMultiplex1Final : std_logic_vector(7 downto 0);
+signal saidaMultiplex2Final : std_logic_vector(7 downto 0);
+
+---------------------    CONEXAO DE MULTPLEXADOR DA RAM        ---------------------------------
+
+signal saidaLeituraDadoOUT : std_logic_vector(7 downto 0);
+signal saidaMultidaRAM : std_logic_vector(7 downto 0);
+----------------------------------------------------------------------
+
 begin
-    Pc_para_MemoriaInstru : PC port map(clock1,aux1,saida1);
-    somador4bits : sum4 port map(saida1,"00000100");
+    Pc_para_MemoriaInstru : PC port map(clock1,saidaMultiplex2Final,saida1);
+    somador4bits : sum4 port map(saida1,"00000100",saidaDoSomador);
     Memoria_DivisaoBits : memROM port map(saida1,saida2);
 	
     --Divisão de bits
@@ -154,11 +185,23 @@ begin
     extensor2x8dadoB : extender2x8 port map(registradoB,dataB);
     -------------------------------------------------------------------------------------
     multiplexAntesRegis : multiplex2x1 port map (registradoB,registradoFake,'0',saidaDmult2x);
-	registradoresConexao : registradores port map (registradoA,saidaDmult2x,dataA,dataB,dataA_saida,dataB_saida,"00");
-    multiplexDepoisRegis : multiplex8bits2x1 port map (dataB_saida,enderecobits_saida,'0',saidaMultpexUla); ------------- Ligação com o extensor de 8 bits
+	registradoresConexao : registradores port map (registradoA,saidaDmult2x,dataA,dataB,dataA_saida,dataB_saida,saidaMultidaRAM);
+    multiplexDepoisRegis : multiplex8bits2x1 port map (dataB_saida,enderecobits_saida,origULAOUT,saidaMultpexUla); ------------- Ligação com o extensor de 8 bits
 
     ------------------------------------------------------------------------------------------------------
     ligacaoULA : ula port map(dataA_saida,saidaMultpexUla,opUlaOUT,zeroULA,saidaResultULA);
     -------------------------------------------------------------------------------------------------------
+    
+    dvi_e_zero : andgate port map(dvcOUT,zeroULA,saidaAND);
+    multplexadorTOPO1 : multiplex8bits2x1 port map(enderecobits_saida,saidaDoSomador,saidaAND,saidaMultiplex1Final);
 
-    end behavior;
+    multplexadorTOPO2 : multiplex8bits2x1 port map(enderecobits_saida,saidaMultiplex1Final,jumpOUT,saidaMultiplex2Final);
+    -------------------------------------------------------------------------------------------------------
+    
+    ---------------------------------- MEMORIA RAM CONEXÃO -------------------------------------------------------
+    conexaomemRAM : memRAM port map('1',enderecobits_saida,saidaResultULA,memLerOUT,memEscOUT,saidaLeituraDadoOUT);
+
+    multplexadorDEPOISRAM : multiplex8bits2x1 port map(saidaLeituraDadoOUT,saidaResultULA,mem_para_regOUT,saidaMultidaRAM);
+    ----------------------------------------------------------------------------------------------------------
+
+end behavior;
