@@ -6,7 +6,8 @@ entity registradores is port(
     regisA, regisB : in std_logic_vector(1 downto 0);
     dadoA,dadoB : in std_logic_vector(7 downto 0);
     dadoA_saida,dadoB_saida : out std_logic_vector(7 downto 0);
-    escRegi : in std_logic_vector(7 downto 0)
+    escRegi : in std_logic_vector(7 downto 0);
+    controleEscRegi : in std_logic
 );
 end entity;
 

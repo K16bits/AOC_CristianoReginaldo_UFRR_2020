@@ -1,5 +1,5 @@
 Analysis & Synthesis report for PC
-Sun May 09 02:39:22 2021
+Sun May 09 18:34:30 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -16,11 +16,10 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   8. General Register Statistics
   9. Port Connectivity Checks: "memRAM:conexaomemRAM"
  10. Port Connectivity Checks: "multiplex2x1:multiplexAntesRegis"
- 11. Port Connectivity Checks: "unidadeDControle:unidadedecontrole"
- 12. Port Connectivity Checks: "sum4:somador4bits"
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+ 11. Port Connectivity Checks: "sum4:somador4bits"
+ 12. Post-Synthesis Netlist Statistics for Top Partition
+ 13. Elapsed Time Per Partition
+ 14. Analysis & Synthesis Messages
 
 
 
@@ -47,7 +46,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun May 09 02:39:22 2021       ;
+; Analysis & Synthesis Status     ; Successful - Sun May 09 18:34:30 2021       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; PC                                          ;
 ; Top-level Entity Name           ; main                                        ;
@@ -170,25 +169,25 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                              ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                       ; Library ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------+---------+
-; ula.vhd                          ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/ula.vhd               ;         ;
-; multiplex2x1.vhd                 ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/multiplex2x1.vhd      ;         ;
-; PC.vhd                           ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/PC.vhd                ;         ;
-; memROM.vhd                       ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/memROM.vhd            ;         ;
-; main.vhd                         ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/main.vhd              ;         ;
-; sum4.vhd                         ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/sum4.vhd              ;         ;
-; unidadeDControle.vhd             ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/unidadeDControle.vhd  ;         ;
-; registradores.vhd                ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/registradores.vhd     ;         ;
-; extender4x8.vhd                  ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/extender4x8.vhd       ;         ;
-; extender2x8.vhd                  ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/extender2x8.vhd       ;         ;
-; multiplex8bits2x1.vhd            ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/multiplex8bits2x1.vhd ;         ;
-; andgate.vhd                      ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/andgate.vhd           ;         ;
-; memRAM.vhd                       ; yes             ; User VHDL File  ; C:/Users/Sunny/Documents/AOC/memRAM.vhd            ;         ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                       ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
+; ula.vhd                          ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd               ;         ;
+; multiplex2x1.vhd                 ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/multiplex2x1.vhd      ;         ;
+; PC.vhd                           ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/PC.vhd                ;         ;
+; memROM.vhd                       ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memROM.vhd            ;         ;
+; main.vhd                         ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd              ;         ;
+; sum4.vhd                         ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/sum4.vhd              ;         ;
+; unidadeDControle.vhd             ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/unidadeDControle.vhd  ;         ;
+; registradores.vhd                ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/registradores.vhd     ;         ;
+; extender4x8.vhd                  ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/extender4x8.vhd       ;         ;
+; extender2x8.vhd                  ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/extender2x8.vhd       ;         ;
+; multiplex8bits2x1.vhd            ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/multiplex8bits2x1.vhd ;         ;
+; andgate.vhd                      ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/andgate.vhd           ;         ;
+; memRAM.vhd                       ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memRAM.vhd            ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -261,15 +260,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------+-------+----------+------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "unidadeDControle:unidadedecontrole"                                                   ;
-+--------+--------+----------+-------------------------------------------------------------------------------------+
-; Port   ; Type   ; Severity ; Details                                                                             ;
-+--------+--------+----------+-------------------------------------------------------------------------------------+
-; regesc ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+--------+--------+----------+-------------------------------------------------------------------------------------+
-
-
 +---------------------------------------------------+
 ; Port Connectivity Checks: "sum4:somador4bits"     ;
 +-----------------+-------+----------+--------------+
@@ -308,80 +298,79 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Sun May 09 02:39:12 2021
+    Info: Processing started: Sun May 09 18:34:17 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off PC -c PC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file ula.vhd
-    Info (12022): Found design unit 1: ula-behavior File: C:/Users/Sunny/Documents/AOC/ula.vhd Line: 14
-    Info (12023): Found entity 1: ula File: C:/Users/Sunny/Documents/AOC/ula.vhd Line: 5
+    Info (12022): Found design unit 1: ula-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 14
+    Info (12023): Found entity 1: ula File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file multiplex2x1.vhd
-    Info (12022): Found design unit 1: multiplex2x1-behavior File: C:/Users/Sunny/Documents/AOC/multiplex2x1.vhd Line: 12
-    Info (12023): Found entity 1: multiplex2x1 File: C:/Users/Sunny/Documents/AOC/multiplex2x1.vhd Line: 4
+    Info (12022): Found design unit 1: multiplex2x1-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/multiplex2x1.vhd Line: 12
+    Info (12023): Found entity 1: multiplex2x1 File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/multiplex2x1.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file pc.vhd
-    Info (12022): Found design unit 1: PC-Behavior File: C:/Users/Sunny/Documents/AOC/PC.vhd Line: 12
-    Info (12023): Found entity 1: PC File: C:/Users/Sunny/Documents/AOC/PC.vhd Line: 5
+    Info (12022): Found design unit 1: PC-Behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/PC.vhd Line: 12
+    Info (12023): Found entity 1: PC File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/PC.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file memrom.vhd
-    Info (12022): Found design unit 1: memROM-Behavior File: C:/Users/Sunny/Documents/AOC/memROM.vhd Line: 11
-    Info (12023): Found entity 1: memROM File: C:/Users/Sunny/Documents/AOC/memROM.vhd Line: 5
+    Info (12022): Found design unit 1: memROM-Behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memROM.vhd Line: 11
+    Info (12023): Found entity 1: memROM File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memROM.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file main.vhd
-    Info (12022): Found design unit 1: main-behavior File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 11
-    Info (12023): Found entity 1: main File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 5
+    Info (12022): Found design unit 1: main-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 11
+    Info (12023): Found entity 1: main File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file sum4.vhd
-    Info (12022): Found design unit 1: sum4-Behavior File: C:/Users/Sunny/Documents/AOC/sum4.vhd Line: 12
-    Info (12023): Found entity 1: sum4 File: C:/Users/Sunny/Documents/AOC/sum4.vhd Line: 5
+    Info (12022): Found design unit 1: sum4-Behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/sum4.vhd Line: 12
+    Info (12023): Found entity 1: sum4 File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/sum4.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file unidadedcontrole.vhd
-    Info (12022): Found design unit 1: unidadeDControle-behavior File: C:/Users/Sunny/Documents/AOC/unidadeDControle.vhd Line: 19
-    Info (12023): Found entity 1: unidadeDControle File: C:/Users/Sunny/Documents/AOC/unidadeDControle.vhd Line: 5
+    Info (12022): Found design unit 1: unidadeDControle-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/unidadeDControle.vhd Line: 19
+    Info (12023): Found entity 1: unidadeDControle File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/unidadeDControle.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file registradores.vhd
-    Info (12022): Found design unit 1: registradores-Behavior File: C:/Users/Sunny/Documents/AOC/registradores.vhd Line: 13
-    Info (12023): Found entity 1: registradores File: C:/Users/Sunny/Documents/AOC/registradores.vhd Line: 5
+    Info (12022): Found design unit 1: registradores-Behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/registradores.vhd Line: 14
+    Info (12023): Found entity 1: registradores File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/registradores.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file extender4x8.vhd
-    Info (12022): Found design unit 1: extender4x8-behavior File: C:/Users/Sunny/Documents/AOC/extender4x8.vhd Line: 10
-    Info (12023): Found entity 1: extender4x8 File: C:/Users/Sunny/Documents/AOC/extender4x8.vhd Line: 4
+    Info (12022): Found design unit 1: extender4x8-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/extender4x8.vhd Line: 10
+    Info (12023): Found entity 1: extender4x8 File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/extender4x8.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file extender2x8.vhd
-    Info (12022): Found design unit 1: extender2x8-behavior File: C:/Users/Sunny/Documents/AOC/extender2x8.vhd Line: 10
-    Info (12023): Found entity 1: extender2x8 File: C:/Users/Sunny/Documents/AOC/extender2x8.vhd Line: 4
+    Info (12022): Found design unit 1: extender2x8-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/extender2x8.vhd Line: 10
+    Info (12023): Found entity 1: extender2x8 File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/extender2x8.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file multiplex8bits2x1.vhd
-    Info (12022): Found design unit 1: multiplex8bits2x1-behavior File: C:/Users/Sunny/Documents/AOC/multiplex8bits2x1.vhd Line: 12
-    Info (12023): Found entity 1: multiplex8bits2x1 File: C:/Users/Sunny/Documents/AOC/multiplex8bits2x1.vhd Line: 4
+    Info (12022): Found design unit 1: multiplex8bits2x1-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/multiplex8bits2x1.vhd Line: 12
+    Info (12023): Found entity 1: multiplex8bits2x1 File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/multiplex8bits2x1.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file andgate.vhd
-    Info (12022): Found design unit 1: andgate-behavior File: C:/Users/Sunny/Documents/AOC/andgate.vhd Line: 12
-    Info (12023): Found entity 1: andgate File: C:/Users/Sunny/Documents/AOC/andgate.vhd Line: 4
+    Info (12022): Found design unit 1: andgate-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/andgate.vhd Line: 12
+    Info (12023): Found entity 1: andgate File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/andgate.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file memram.vhd
-    Info (12022): Found design unit 1: memRAM-behavior File: C:/Users/Sunny/Documents/AOC/memRAM.vhd Line: 15
-    Info (12023): Found entity 1: memRAM File: C:/Users/Sunny/Documents/AOC/memRAM.vhd Line: 5
+    Info (12022): Found design unit 1: memRAM-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memRAM.vhd Line: 15
+    Info (12023): Found entity 1: memRAM File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memRAM.vhd Line: 5
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at main.vhd(112): used implicit default value for signal "clock1" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 112
-Warning (10541): VHDL Signal Declaration warning at main.vhd(131): used implicit default value for signal "registradoFake" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 131
-Warning (10036): Verilog HDL or VHDL warning at main.vhd(149): object "regEscOUT" assigned a value but never read File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 149
-Info (12128): Elaborating entity "PC" for hierarchy "PC:Pc_para_MemoriaInstru" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 168
-Info (12128): Elaborating entity "sum4" for hierarchy "sum4:somador4bits" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 169
-Info (12128): Elaborating entity "memROM" for hierarchy "memROM:Memoria_DivisaoBits" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 170
-Info (12128): Elaborating entity "extender4x8" for hierarchy "extender4x8:enderecoComExtensor" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 179
-Info (12128): Elaborating entity "unidadeDControle" for hierarchy "unidadeDControle:unidadedecontrole" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 180
-Info (12128): Elaborating entity "extender2x8" for hierarchy "extender2x8:extensor2x8dadoA" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 184
-Info (12128): Elaborating entity "multiplex2x1" for hierarchy "multiplex2x1:multiplexAntesRegis" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 187
-Info (12128): Elaborating entity "registradores" for hierarchy "registradores:registradoresConexao" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 188
-Warning (10541): VHDL Signal Declaration warning at registradores.vhd(15): used implicit default value for signal "registrador" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Sunny/Documents/AOC/registradores.vhd Line: 15
-Info (12128): Elaborating entity "multiplex8bits2x1" for hierarchy "multiplex8bits2x1:multiplexDepoisRegis" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 189
-Info (12128): Elaborating entity "ula" for hierarchy "ula:ligacaoULA" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 192
-Warning (10541): VHDL Signal Declaration warning at ula.vhd(9): used implicit default value for signal "zero" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/Users/Sunny/Documents/AOC/ula.vhd Line: 9
-Info (12128): Elaborating entity "andgate" for hierarchy "andgate:dvi_e_zero" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 195
-Info (12128): Elaborating entity "memRAM" for hierarchy "memRAM:conexaomemRAM" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 202
-Warning (10445): VHDL Subtype or Type Declaration warning at memRAM.vhd(16): subtype or type has null range File: C:/Users/Sunny/Documents/AOC/memRAM.vhd Line: 16
-Warning (10873): Using initial value X (don't care) for net "saidaLeituraDado" at memRAM.vhd(11) File: C:/Users/Sunny/Documents/AOC/memRAM.vhd Line: 11
+Warning (10541): VHDL Signal Declaration warning at main.vhd(114): used implicit default value for signal "clock1" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 114
+Warning (10541): VHDL Signal Declaration warning at main.vhd(133): used implicit default value for signal "registradoFake" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 133
+Info (12128): Elaborating entity "PC" for hierarchy "PC:Pc_para_MemoriaInstru" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 170
+Info (12128): Elaborating entity "sum4" for hierarchy "sum4:somador4bits" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 171
+Info (12128): Elaborating entity "memROM" for hierarchy "memROM:Memoria_DivisaoBits" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 172
+Info (12128): Elaborating entity "extender4x8" for hierarchy "extender4x8:enderecoComExtensor" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 181
+Info (12128): Elaborating entity "unidadeDControle" for hierarchy "unidadeDControle:unidadedecontrole" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 182
+Info (12128): Elaborating entity "extender2x8" for hierarchy "extender2x8:extensor2x8dadoA" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 186
+Info (12128): Elaborating entity "multiplex2x1" for hierarchy "multiplex2x1:multiplexAntesRegis" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 189
+Info (12128): Elaborating entity "registradores" for hierarchy "registradores:registradoresConexao" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 190
+Warning (10541): VHDL Signal Declaration warning at registradores.vhd(16): used implicit default value for signal "registrador" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/registradores.vhd Line: 16
+Info (12128): Elaborating entity "multiplex8bits2x1" for hierarchy "multiplex8bits2x1:multiplexDepoisRegis" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 191
+Info (12128): Elaborating entity "ula" for hierarchy "ula:ligacaoULA" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 194
+Warning (10541): VHDL Signal Declaration warning at ula.vhd(9): used implicit default value for signal "zero" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 9
+Info (12128): Elaborating entity "andgate" for hierarchy "andgate:dvi_e_zero" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 197
+Info (12128): Elaborating entity "memRAM" for hierarchy "memRAM:conexaomemRAM" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 204
+Warning (10445): VHDL Subtype or Type Declaration warning at memRAM.vhd(16): subtype or type has null range File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memRAM.vhd Line: 16
+Warning (10873): Using initial value X (don't care) for net "saidaLeituraDado" at memRAM.vhd(11) File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memRAM.vhd Line: 11
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "A0" File: C:/Users/Sunny/Documents/AOC/main.vhd Line: 7
+    Warning (15610): No output dependent on input pin "A0" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 7
 Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 1 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 10 warnings
-    Info: Peak virtual memory: 4847 megabytes
-    Info: Processing ended: Sun May 09 02:39:22 2021
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:21
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 9 warnings
+    Info: Peak virtual memory: 4838 megabytes
+    Info: Processing ended: Sun May 09 18:34:30 2021
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:23
 
 

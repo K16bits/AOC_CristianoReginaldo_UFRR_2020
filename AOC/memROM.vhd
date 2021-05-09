@@ -10,7 +10,7 @@ end memROM;
 
 architecture Behavior of memROM is 
 
-constant instrucao0: STD_LOGIC_VECTOR (7 downto 0) := "00000000";
+constant instrucao0: STD_LOGIC_VECTOR (7 downto 0) := "00000101";
 CONSTANT instrucao1:  STD_LOGIC_VECTOR (7 DOWNTO 0) := "00000100";
 
 type ROMvector is array (natural range <>) OF std_logic_vector (7 DOWNTO 0);

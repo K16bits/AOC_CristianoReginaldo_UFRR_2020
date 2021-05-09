@@ -57,7 +57,7 @@ saida[7] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |main|memROM:Memoria_DivisaoBits
-PC_endereco[0] => instrucao[2].DATAIN
+PC_endereco[0] => instrucao[0].DATAIN
 PC_endereco[1] => ~NO_FANOUT~
 PC_endereco[2] => ~NO_FANOUT~
 PC_endereco[3] => ~NO_FANOUT~
@@ -65,9 +65,9 @@ PC_endereco[4] => ~NO_FANOUT~
 PC_endereco[5] => ~NO_FANOUT~
 PC_endereco[6] => ~NO_FANOUT~
 PC_endereco[7] => ~NO_FANOUT~
-instrucao[0] <= <GND>
+instrucao[0] <= PC_endereco[0].DB_MAX_OUTPUT_PORT_TYPE
 instrucao[1] <= <GND>
-instrucao[2] <= PC_endereco[0].DB_MAX_OUTPUT_PORT_TYPE
+instrucao[2] <= <VCC>
 instrucao[3] <= <GND>
 instrucao[4] <= <GND>
 instrucao[5] <= <GND>
@@ -197,6 +197,7 @@ escRegi[4] => ~NO_FANOUT~
 escRegi[5] => ~NO_FANOUT~
 escRegi[6] => ~NO_FANOUT~
 escRegi[7] => ~NO_FANOUT~
+controleEscRegi => ~NO_FANOUT~
 
 
 |main|multiplex8bits2x1:multiplexDepoisRegis

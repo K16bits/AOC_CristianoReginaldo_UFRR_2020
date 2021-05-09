@@ -48,9 +48,11 @@ component registradores is port(
     regisA, regisB : in std_logic_vector(1 downto 0);
     dadoA,dadoB : in std_logic_vector(7 downto 0);
     dadoA_saida,dadoB_saida : out std_logic_vector(7 downto 0);
-    escRegi : in std_logic_vector(7 downto 0)
+    escRegi : in std_logic_vector(7 downto 0);
+    controleEscRegi : in std_logic
 );
 end component;
+
 
 component multiplex2x1 is 
 port(
@@ -185,7 +187,7 @@ begin
     extensor2x8dadoB : extender2x8 port map(registradoB,dataB);
     -------------------------------------------------------------------------------------
     multiplexAntesRegis : multiplex2x1 port map (registradoB,registradoFake,'0',saidaDmult2x);
-	registradoresConexao : registradores port map (registradoA,saidaDmult2x,dataA,dataB,dataA_saida,dataB_saida,saidaMultidaRAM);
+	registradoresConexao : registradores port map (registradoA,saidaDmult2x,dataA,dataB,dataA_saida,dataB_saida,saidaMultidaRAM,regEscOUT);
     multiplexDepoisRegis : multiplex8bits2x1 port map (dataB_saida,enderecobits_saida,origULAOUT,saidaMultpexUla); ------------- Ligação com o extensor de 8 bits
 
     ------------------------------------------------------------------------------------------------------
@@ -199,7 +201,7 @@ begin
     -------------------------------------------------------------------------------------------------------
     
     ---------------------------------- MEMORIA RAM CONEXÃO -------------------------------------------------------
-    conexaomemRAM : memRAM port map('1',enderecobits_saida,saidaResultULA,memLerOUT,memEscOUT,saidaLeituraDadoOUT);
+    conexaomemRAM : memRAM port map('1',saidaResultULA,dataB_saida,memLerOUT,memEscOUT,saidaLeituraDadoOUT);
 
     multplexadorDEPOISRAM : multiplex8bits2x1 port map(saidaLeituraDadoOUT,saidaResultULA,mem_para_regOUT,saidaMultidaRAM);
     ----------------------------------------------------------------------------------------------------------
