@@ -1,5 +1,13 @@
 |main
-A0 => ~NO_FANOUT~
+clk => PC:Pc_para_MemoriaInstru.clock
+clk => memROM:Memoria_DivisaoBits.clockROM
+clk => unidadeDControle:unidadedecontrole.clockControle
+clk => ula:ligacaoULA.clockULA
+clk => memRAM:conexaomemRAM.clockRAM
+parte1[0] <= memROM:Memoria_DivisaoBits.instrucao[4]
+parte1[1] <= memROM:Memoria_DivisaoBits.instrucao[5]
+parte1[2] <= memROM:Memoria_DivisaoBits.instrucao[6]
+parte1[3] <= memROM:Memoria_DivisaoBits.instrucao[7]
 
 
 |main|PC:Pc_para_MemoriaInstru
@@ -57,6 +65,9 @@ saida[7] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |main|memROM:Memoria_DivisaoBits
+clockROM => ~NO_FANOUT~
+PC_endereco[0] => instrucao[4].DATAIN
+PC_endereco[0] => instrucao[2].DATAIN
 PC_endereco[0] => instrucao[0].DATAIN
 PC_endereco[1] => ~NO_FANOUT~
 PC_endereco[2] => ~NO_FANOUT~
@@ -67,9 +78,9 @@ PC_endereco[6] => ~NO_FANOUT~
 PC_endereco[7] => ~NO_FANOUT~
 instrucao[0] <= PC_endereco[0].DB_MAX_OUTPUT_PORT_TYPE
 instrucao[1] <= <GND>
-instrucao[2] <= <VCC>
+instrucao[2] <= PC_endereco[0].DB_MAX_OUTPUT_PORT_TYPE
 instrucao[3] <= <GND>
-instrucao[4] <= <GND>
+instrucao[4] <= PC_endereco[0].DB_MAX_OUTPUT_PORT_TYPE
 instrucao[5] <= <GND>
 instrucao[6] <= <GND>
 instrucao[7] <= <GND>
@@ -91,21 +102,29 @@ saida[7] <= <GND>
 
 
 |main|unidadeDControle:unidadedecontrole
-clock => jump~reg0.CLK
-clock => dvc~reg0.CLK
-clock => regEsc~reg0.CLK
-clock => mem_para_reg~reg0.CLK
-clock => memEsc~reg0.CLK
-clock => memLer~reg0.CLK
-clock => origULA~reg0.CLK
-clock => opULA[0]~reg0.CLK
-clock => opULA[1]~reg0.CLK
+clockControle => jump~reg0.CLK
+clockControle => dvc~reg0.CLK
+clockControle => regEsc~reg0.CLK
+clockControle => mem_para_reg~reg0.CLK
+clockControle => memEsc~reg0.CLK
+clockControle => memLer~reg0.CLK
+clockControle => origULA~reg0.CLK
+clockControle => opULA[0]~reg0.CLK
+clockControle => opULA[1]~reg0.CLK
+clockControle => opULA[2]~reg0.CLK
+clockControle => opULA[3]~reg0.CLK
 entrada4bits[0] => Equal0.IN7
+entrada4bits[0] => Equal1.IN7
 entrada4bits[1] => Equal0.IN6
+entrada4bits[1] => Equal1.IN6
 entrada4bits[2] => Equal0.IN5
+entrada4bits[2] => Equal1.IN5
 entrada4bits[3] => Equal0.IN4
+entrada4bits[3] => Equal1.IN4
 opULA[0] <= opULA[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 opULA[1] <= opULA[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+opULA[2] <= opULA[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+opULA[3] <= opULA[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 origULA <= origULA~reg0.DB_MAX_OUTPUT_PORT_TYPE
 memLer <= memLer~reg0.DB_MAX_OUTPUT_PORT_TYPE
 memEsc <= memEsc~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -236,6 +255,7 @@ S[7] <= S.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |main|ula:ligacaoULA
+clockULA => ~NO_FANOUT~
 entradaA[0] => Add0.IN8
 entradaA[0] => Add1.IN16
 entradaA[1] => Add0.IN7
@@ -268,22 +288,38 @@ entradaB[6] => Add0.IN10
 entradaB[6] => Add1.IN2
 entradaB[7] => Add0.IN9
 entradaB[7] => Add1.IN1
-opULA[0] => Mux0.IN5
-opULA[0] => Mux1.IN5
-opULA[0] => Mux2.IN5
-opULA[0] => Mux3.IN5
-opULA[0] => Mux4.IN5
-opULA[0] => Mux5.IN5
-opULA[0] => Mux6.IN5
-opULA[0] => Mux7.IN5
-opULA[1] => Mux0.IN4
-opULA[1] => Mux1.IN4
-opULA[1] => Mux2.IN4
-opULA[1] => Mux3.IN4
-opULA[1] => Mux4.IN4
-opULA[1] => Mux5.IN4
-opULA[1] => Mux6.IN4
-opULA[1] => Mux7.IN4
+opULA[0] => Mux0.IN19
+opULA[0] => Mux1.IN19
+opULA[0] => Mux2.IN19
+opULA[0] => Mux3.IN19
+opULA[0] => Mux4.IN19
+opULA[0] => Mux5.IN19
+opULA[0] => Mux6.IN19
+opULA[0] => Mux7.IN19
+opULA[1] => Mux0.IN18
+opULA[1] => Mux1.IN18
+opULA[1] => Mux2.IN18
+opULA[1] => Mux3.IN18
+opULA[1] => Mux4.IN18
+opULA[1] => Mux5.IN18
+opULA[1] => Mux6.IN18
+opULA[1] => Mux7.IN18
+opULA[2] => Mux0.IN17
+opULA[2] => Mux1.IN17
+opULA[2] => Mux2.IN17
+opULA[2] => Mux3.IN17
+opULA[2] => Mux4.IN17
+opULA[2] => Mux5.IN17
+opULA[2] => Mux6.IN17
+opULA[2] => Mux7.IN17
+opULA[3] => Mux0.IN16
+opULA[3] => Mux1.IN16
+opULA[3] => Mux2.IN16
+opULA[3] => Mux3.IN16
+opULA[3] => Mux4.IN16
+opULA[3] => Mux5.IN16
+opULA[3] => Mux6.IN16
+opULA[3] => Mux7.IN16
 zero <= comb.DB_MAX_OUTPUT_PORT_TYPE
 resultado[0] <= Mux7.DB_MAX_OUTPUT_PORT_TYPE
 resultado[1] <= Mux6.DB_MAX_OUTPUT_PORT_TYPE
@@ -372,7 +408,7 @@ S[7] <= S.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |main|memRAM:conexaomemRAM
-clock => ~NO_FANOUT~
+clockRAM => ~NO_FANOUT~
 endereco[0] => ~NO_FANOUT~
 endereco[1] => ~NO_FANOUT~
 endereco[2] => ~NO_FANOUT~

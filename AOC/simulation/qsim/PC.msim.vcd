@@ -1,0 +1,134 @@
+$comment
+	File created using the following command:
+		vcd file PC.msim.vcd -direction
+$end
+$date
+	Mon May 10 01:20:41 2021
+$end
+$version
+	ModelSim Version 2020.1
+$end
+$timescale
+	1ps
+$end
+
+$scope module main_vhd_vec_tst $end
+$var wire 1 ! clk $end
+$var wire 1 " parte1 [3] $end
+$var wire 1 # parte1 [2] $end
+$var wire 1 $ parte1 [1] $end
+$var wire 1 % parte1 [0] $end
+
+$scope module i1 $end
+$var wire 1 & gnd $end
+$var wire 1 ' vcc $end
+$var wire 1 ( unknown $end
+$var wire 1 ) devoe $end
+$var wire 1 * devclrn $end
+$var wire 1 + devpor $end
+$var wire 1 , ww_devoe $end
+$var wire 1 - ww_devclrn $end
+$var wire 1 . ww_devpor $end
+$var wire 1 / ww_clk $end
+$var wire 1 0 ww_parte1 [3] $end
+$var wire 1 1 ww_parte1 [2] $end
+$var wire 1 2 ww_parte1 [1] $end
+$var wire 1 3 ww_parte1 [0] $end
+$var wire 1 4 \parte1[0]~output_o\ $end
+$var wire 1 5 \parte1[1]~output_o\ $end
+$var wire 1 6 \parte1[2]~output_o\ $end
+$var wire 1 7 \parte1[3]~output_o\ $end
+$var wire 1 8 \clk~input_o\ $end
+$var wire 1 9 \Pc_para_MemoriaInstru|saida[0]~0_combout\ $end
+$var wire 1 : \Pc_para_MemoriaInstru|saida\ [7] $end
+$var wire 1 ; \Pc_para_MemoriaInstru|saida\ [6] $end
+$var wire 1 < \Pc_para_MemoriaInstru|saida\ [5] $end
+$var wire 1 = \Pc_para_MemoriaInstru|saida\ [4] $end
+$var wire 1 > \Pc_para_MemoriaInstru|saida\ [3] $end
+$var wire 1 ? \Pc_para_MemoriaInstru|saida\ [2] $end
+$var wire 1 @ \Pc_para_MemoriaInstru|saida\ [1] $end
+$var wire 1 A \Pc_para_MemoriaInstru|saida\ [0] $end
+$var wire 1 B \Pc_para_MemoriaInstru|ALT_INV_saida\ [0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+0&
+1'
+x(
+1)
+1*
+1+
+1,
+1-
+1.
+0/
+04
+05
+06
+07
+08
+19
+00
+01
+02
+03
+x:
+x;
+x<
+x=
+x>
+x?
+x@
+0A
+1B
+0"
+0#
+0$
+0%
+$end
+#150000
+1!
+1/
+18
+1A
+0B
+09
+14
+13
+1%
+#300000
+0!
+0/
+08
+#450000
+1!
+1/
+18
+0A
+1B
+19
+04
+03
+0%
+#600000
+0!
+0/
+08
+#750000
+1!
+1/
+18
+1A
+0B
+09
+14
+13
+1%
+#900000
+0!
+0/
+08
+#1000000

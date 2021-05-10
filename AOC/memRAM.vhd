@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.all;
 USE ieee.numeric_std.ALL;
 
 entity memRAM is port(
-    clock: in std_logic;
+    clockRAM: in std_logic;
     endereco : in std_logic_vector(7 downto 0);
     escritaDado : in std_logic_vector(7 downto 0);
     memLer : in std_logic;
@@ -16,9 +16,9 @@ architecture behavior of memRAM is
     type memoriaRAM is array (0 downto 7) of std_logic_vector(7 downto 0);
     signal ram : memoriaRAM := (others => "00000000");
 begin
-    process(clock)
+    process(clockRAM)
     begin
-        if rising_edge(clock) then
+        if rising_edge(clockRAM) then
             if(memLer = '1') then
                 saidaLeituraDado <= ram(to_integer(unsigned(endereco)));
                 end if;

@@ -4,7 +4,8 @@ use IEEE.std_logic_unsigned.all;
 
 entity main is
 port(
-    A0 : in std_logic
+    clk : in std_logic;
+    parte1 : out std_logic_vector(3 downto 0)
 );
 end main;
 
@@ -18,6 +19,7 @@ component PC is port (
 end component;
 
 component memROM is port (
+        clockROM: in std_logic;
         PC_endereco: in std_logic_vector(7 downto 0);
         instrucao: out std_logic_vector(7 downto 0)
 );
@@ -31,9 +33,9 @@ component sum4 is port(
 end component;
 
 component unidadeDControle is port(
-    clock:        in std_logic;
+    clockControle: in std_logic;
     entrada4bits: in std_logic_vector(3 downto 0);
-    opULA:     out std_logic_vector(1 downto 0);
+    opULA:     out std_logic_vector(3 downto 0);
     origULA: out std_logic;
     memLer: out std_logic;
     memEsc: out std_logic;
@@ -85,9 +87,10 @@ end component;
 
 
 component ula is port (
+    clockULA : in std_logic;
     entradaA : in std_logic_vector(7 downto 0);
     entradaB : in std_logic_vector(7 downto 0);
-    opULA : in std_logic_vector(1 downto 0);
+    opULA : in std_logic_vector(3 downto 0);
     zero : out std_logic;
     resultado : out std_logic_vector(7 downto 0)
 );
@@ -102,7 +105,7 @@ port(
 end component;
 
 component memRAM is port(
-    clock: in std_logic;
+    clockRAM: in std_logic;
     endereco : in std_logic_vector(7 downto 0);
     escritaDado : in std_logic_vector(7 downto 0);
     memLer : in std_logic;
@@ -111,7 +114,6 @@ component memRAM is port(
 );
 end component;
 
-signal clock1 : std_logic;
 signal aux1 : std_logic_vector(7 downto 0);
 signal saida1 : std_logic_vector(7 downto 0);
 signal saida2 : std_logic_vector(7 downto 0);
@@ -143,7 +145,7 @@ signal saidaResultULA : std_logic_vector(7 downto 0);
 signal zeroULA : std_logic;
 
 ----------------------- Unidade de controle -----------------------
-signal opUlaOUT : std_logic_vector (1 downto 0);
+signal opUlaOUT : std_logic_vector (3 downto 0);
 signal origULAOUT : std_logic;
 signal memLerOUT : std_logic;
 signal memEscOUT : std_logic;
@@ -167,9 +169,9 @@ signal saidaMultidaRAM : std_logic_vector(7 downto 0);
 ----------------------------------------------------------------------
 
 begin
-    Pc_para_MemoriaInstru : PC port map(clock1,saidaMultiplex2Final,saida1);
-    somador4bits : sum4 port map(saida1,"00000100",saidaDoSomador);
-    Memoria_DivisaoBits : memROM port map(saida1,saida2);
+    Pc_para_MemoriaInstru : PC port map(clk,saidaMultiplex2Final,saida1);
+    somador4bits : sum4 port map(saida1,"00000001",saidaDoSomador);
+    Memoria_DivisaoBits : memROM port map(clk,saida1,saida2);
 	
     --Divisão de bits
 	bitControle <= saida2(7 downto 4);
@@ -179,7 +181,7 @@ begin
 
     -----------------------------------------------------------------------------------------------------
     enderecoComExtensor : extender4x8 port map(enderecobits,enderecobits_saida);
-    unidadedecontrole : unidadeDControle port map (clock1,bitControle,opUlaOUT,origULAOUT,memLerOUT,memEscOUT,mem_para_regOUT,regEscOUT,dvcOUT,jumpOUT);
+    unidadedecontrole : unidadeDControle port map (clk,bitControle,opUlaOUT,origULAOUT,memLerOUT,memEscOUT,mem_para_regOUT,regEscOUT,dvcOUT,jumpOUT);
 
 
     -------------------EXTENSOR : 2 bits para 8 bits para a memoria -----------------------------------
@@ -191,7 +193,7 @@ begin
     multiplexDepoisRegis : multiplex8bits2x1 port map (dataB_saida,enderecobits_saida,origULAOUT,saidaMultpexUla); ------------- Ligação com o extensor de 8 bits
 
     ------------------------------------------------------------------------------------------------------
-    ligacaoULA : ula port map(dataA_saida,saidaMultpexUla,opUlaOUT,zeroULA,saidaResultULA);
+    ligacaoULA : ula port map(clk,dataA_saida,saidaMultpexUla,opUlaOUT,zeroULA,saidaResultULA);
     -------------------------------------------------------------------------------------------------------
     
     dvi_e_zero : andgate port map(dvcOUT,zeroULA,saidaAND);
@@ -201,9 +203,14 @@ begin
     -------------------------------------------------------------------------------------------------------
     
     ---------------------------------- MEMORIA RAM CONEXÃO -------------------------------------------------------
-    conexaomemRAM : memRAM port map('1',saidaResultULA,dataB_saida,memLerOUT,memEscOUT,saidaLeituraDadoOUT);
+    conexaomemRAM : memRAM port map(clk,saidaResultULA,dataB_saida,memLerOUT,memEscOUT,saidaLeituraDadoOUT);
 
     multplexadorDEPOISRAM : multiplex8bits2x1 port map(saidaLeituraDadoOUT,saidaResultULA,mem_para_regOUT,saidaMultidaRAM);
     ----------------------------------------------------------------------------------------------------------
+    ---------------------------------------- PORTAS DE RESULTADOS --------------------------------------------
+    parte1 <= bitControle;
+   
+
+    --------------------------------------------------------------------------------------------------------------
 
 end behavior;
