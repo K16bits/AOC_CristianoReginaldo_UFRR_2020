@@ -25,21 +25,32 @@ begin
                     opULA        <= "0000";
                     origULA      <= '0';
                     memLer       <= '0';
-                    memEsc        <= '0';
+                    memEsc       <= '0';
                     mem_para_reg <= '0';
                     regEsc       <= '1';
-                    dvc       <= '0';
+                    dvc          <= '0';
                     jump         <= '0';
                 end if;
 
                 if entrada4bits = "0001" then ---------SUB
-                    opULA        <= "0000";
+                    opULA        <= "0001";
                     origULA      <= '0';
                     memLer       <= '0';
-                    memEsc        <= '0';
+                    memEsc       <= '0';
                     mem_para_reg <= '0';
                     regEsc       <= '1';
-                    dvc       <= '0';
+                    dvc          <= '0';
+                    jump         <= '0';
+                end if;
+
+                if entrada4bits = "0010" then --------- SW - STORE WORD
+                    opULA        <= "0100";
+                    origULA      <= '0';
+                    memLer       <= '0';
+                    memEsc       <= '1';
+                    mem_para_reg <= '0';
+                    regEsc       <= '0';
+                    dvc          <= '0';
                     jump         <= '0';
                 end if;
         end if;
