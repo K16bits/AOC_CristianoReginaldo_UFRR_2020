@@ -186,7 +186,7 @@ begin
     rom_para_divisao : memROM port map(clk,entrada1,saida01);
 	
     --------------------- 1 extensor de sinal 4x8 depois da ROM  -------------------------------------
-    extensor1_4x8 : extender4x8 port map (saida01)
+    --extensor1_4x8 : extender4x8 port map (saida01);
     --------------------------------------------------------------------------------------------------
 
 
