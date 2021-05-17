@@ -1,13 +1,21 @@
 |main
 clk => PC:Pc_para_MemoriaInstru.clock
-clk => memROM:Memoria_DivisaoBits.clockROM
+clk => memROM:rom_para_divisao.clockROM
 clk => unidadeDControle:unidadedecontrole.clockControle
 clk => ula:ligacaoULA.clockULA
 clk => memRAM:conexaomemRAM.clockRAM
-parte1[0] <= memROM:Memoria_DivisaoBits.instrucao[4]
-parte1[1] <= memROM:Memoria_DivisaoBits.instrucao[5]
-parte1[2] <= memROM:Memoria_DivisaoBits.instrucao[6]
-parte1[3] <= memROM:Memoria_DivisaoBits.instrucao[7]
+teste[0] => PC:Pc_para_MemoriaInstru.entrada[0]
+teste[1] => PC:Pc_para_MemoriaInstru.entrada[1]
+teste[2] => PC:Pc_para_MemoriaInstru.entrada[2]
+teste[3] => PC:Pc_para_MemoriaInstru.entrada[3]
+teste[4] => PC:Pc_para_MemoriaInstru.entrada[4]
+teste[5] => PC:Pc_para_MemoriaInstru.entrada[5]
+teste[6] => PC:Pc_para_MemoriaInstru.entrada[6]
+teste[7] => PC:Pc_para_MemoriaInstru.entrada[7]
+opcodeteste[0] << unidadeDControle:unidadedecontrole.opULA[0]
+opcodeteste[1] << unidadeDControle:unidadedecontrole.opULA[1]
+opcodeteste[2] << unidadeDControle:unidadedecontrole.opULA[2]
+opcodeteste[3] << unidadeDControle:unidadedecontrole.opULA[3]
 
 
 |main|PC:Pc_para_MemoriaInstru
@@ -64,7 +72,7 @@ saida[6] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
 saida[7] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|main|memROM:Memoria_DivisaoBits
+|main|memROM:rom_para_divisao
 clockROM => ~NO_FANOUT~
 PC_endereco[0] => instrucao[4].DATAIN
 PC_endereco[0] => instrucao[2].DATAIN
@@ -84,6 +92,37 @@ instrucao[4] <= PC_endereco[0].DB_MAX_OUTPUT_PORT_TYPE
 instrucao[5] <= <GND>
 instrucao[6] <= <GND>
 instrucao[7] <= <GND>
+
+
+|main|divisor_bits:divisaoDeBits
+entrada[0] => saida_extensor2[0].DATAIN
+entrada[0] => saida_regB[0].DATAIN
+entrada[0] => saida_extensor1[0].DATAIN
+entrada[1] => saida_extensor2[1].DATAIN
+entrada[1] => saida_regB[1].DATAIN
+entrada[1] => saida_extensor1[1].DATAIN
+entrada[2] => saida_extensor1[2].DATAIN
+entrada[2] => saida_regA[0].DATAIN
+entrada[3] => saida_extensor1[3].DATAIN
+entrada[3] => saida_regA[1].DATAIN
+entrada[4] => saida_controle[0].DATAIN
+entrada[5] => saida_controle[1].DATAIN
+entrada[6] => saida_controle[2].DATAIN
+entrada[7] => saida_controle[3].DATAIN
+saida_controle[0] <= entrada[4].DB_MAX_OUTPUT_PORT_TYPE
+saida_controle[1] <= entrada[5].DB_MAX_OUTPUT_PORT_TYPE
+saida_controle[2] <= entrada[6].DB_MAX_OUTPUT_PORT_TYPE
+saida_controle[3] <= entrada[7].DB_MAX_OUTPUT_PORT_TYPE
+saida_regA[0] <= entrada[2].DB_MAX_OUTPUT_PORT_TYPE
+saida_regA[1] <= entrada[3].DB_MAX_OUTPUT_PORT_TYPE
+saida_regB[0] <= entrada[0].DB_MAX_OUTPUT_PORT_TYPE
+saida_regB[1] <= entrada[1].DB_MAX_OUTPUT_PORT_TYPE
+saida_extensor1[0] <= entrada[0].DB_MAX_OUTPUT_PORT_TYPE
+saida_extensor1[1] <= entrada[1].DB_MAX_OUTPUT_PORT_TYPE
+saida_extensor1[2] <= entrada[2].DB_MAX_OUTPUT_PORT_TYPE
+saida_extensor1[3] <= entrada[3].DB_MAX_OUTPUT_PORT_TYPE
+saida_extensor2[0] <= entrada[0].DB_MAX_OUTPUT_PORT_TYPE
+saida_extensor2[1] <= entrada[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |main|extender4x8:enderecoComExtensor
@@ -115,12 +154,16 @@ clockControle => opULA[2]~reg0.CLK
 clockControle => opULA[3]~reg0.CLK
 entrada4bits[0] => Equal0.IN7
 entrada4bits[0] => Equal1.IN7
+entrada4bits[0] => Equal2.IN7
 entrada4bits[1] => Equal0.IN6
 entrada4bits[1] => Equal1.IN6
+entrada4bits[1] => Equal2.IN6
 entrada4bits[2] => Equal0.IN5
 entrada4bits[2] => Equal1.IN5
+entrada4bits[2] => Equal2.IN5
 entrada4bits[3] => Equal0.IN4
 entrada4bits[3] => Equal1.IN4
+entrada4bits[3] => Equal2.IN4
 opULA[0] <= opULA[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 opULA[1] <= opULA[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 opULA[2] <= opULA[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE

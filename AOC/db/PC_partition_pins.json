@@ -4,11 +4,15 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "parte1[0]",
+					"name" : "opcodeteste[0]",
 					"strict" : false
 				},
 				{
 					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "teste[0]",
 					"strict" : false
 				}
 			]

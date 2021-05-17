@@ -1,5 +1,5 @@
 Analysis & Synthesis report for PC
-Mon May 10 01:17:38 2021
+Sun May 16 15:17:55 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -14,13 +14,14 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Registers Removed During Synthesis
-  9. Removed Registers Triggering Further Register Optimizations
- 10. General Register Statistics
+  9. General Register Statistics
+ 10. Port Connectivity Checks: "multiplex8bits2x1:multplexadorTOPO2"
  11. Port Connectivity Checks: "multiplex2x1:multiplexAntesRegis"
- 12. Port Connectivity Checks: "sum4:somador4bits"
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+ 12. Port Connectivity Checks: "divisor_bits:divisaoDeBits"
+ 13. Port Connectivity Checks: "sum4:somador4bits"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -47,14 +48,14 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon May 10 01:17:38 2021       ;
+; Analysis & Synthesis Status     ; Successful - Sun May 16 15:17:54 2021       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; PC                                          ;
 ; Top-level Entity Name           ; main                                        ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 1                                           ;
-; Total pins                      ; 5                                           ;
+; Total registers                 ; 2                                           ;
+; Total pins                      ; 13                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -167,7 +168,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processors 2-4         ;   0.1%      ;
 +----------------------------+-------------+
 
 
@@ -176,6 +177,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                ; Library ;
 +----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
+; divisor_bits.vhd                 ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/divisor_bits.vhd      ;         ;
 ; ula.vhd                          ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd               ;         ;
 ; multiplex2x1.vhd                 ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/multiplex2x1.vhd      ;         ;
 ; PC.vhd                           ; yes             ; User VHDL File  ; C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/PC.vhd                ;         ;
@@ -192,65 +194,54 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
 
 
-+---------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                                     ;
-+---------------------------------------------+-----------------------------------+
-; Resource                                    ; Usage                             ;
-+---------------------------------------------+-----------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 1                                 ;
-;                                             ;                                   ;
-; Combinational ALUT usage for logic          ; 1                                 ;
-;     -- 7 input functions                    ; 0                                 ;
-;     -- 6 input functions                    ; 0                                 ;
-;     -- 5 input functions                    ; 0                                 ;
-;     -- 4 input functions                    ; 0                                 ;
-;     -- <=3 input functions                  ; 1                                 ;
-;                                             ;                                   ;
-; Dedicated logic registers                   ; 1                                 ;
-;                                             ;                                   ;
-; I/O pins                                    ; 5                                 ;
-;                                             ;                                   ;
-; Total DSP Blocks                            ; 0                                 ;
-;                                             ;                                   ;
-; Maximum fan-out node                        ; PC:Pc_para_MemoriaInstru|saida[0] ;
-; Maximum fan-out                             ; 2                                 ;
-; Total fan-out                               ; 9                                 ;
-; Average fan-out                             ; 0.75                              ;
-+---------------------------------------------+-----------------------------------+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 1         ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 0         ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 0         ;
+;     -- 5 input functions                    ; 0         ;
+;     -- 4 input functions                    ; 0         ;
+;     -- <=3 input functions                  ; 0         ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 2         ;
+;                                             ;           ;
+; I/O pins                                    ; 13        ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 2         ;
+; Total fan-out                               ; 18        ;
+; Average fan-out                             ; 0.64      ;
++---------------------------------------------+-----------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                  ;
-+-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------+-------------+--------------+
-; Compilation Hierarchy Node    ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name            ; Entity Name ; Library Name ;
-+-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------+-------------+--------------+
-; |main                         ; 1 (0)               ; 1 (0)                     ; 0                 ; 0          ; 5    ; 0            ; |main                          ; main        ; work         ;
-;    |PC:Pc_para_MemoriaInstru| ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |main|PC:Pc_para_MemoriaInstru ; PC          ; work         ;
-+-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+--------------------------------+-------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                           ;
++-----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+------------------+--------------+
+; Compilation Hierarchy Node              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                      ; Entity Name      ; Library Name ;
++-----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+------------------+--------------+
+; |main                                   ; 0 (0)               ; 2 (0)                     ; 0                 ; 0          ; 13   ; 0            ; |main                                    ; main             ; work         ;
+;    |PC:Pc_para_MemoriaInstru|           ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |main|PC:Pc_para_MemoriaInstru           ; PC               ; work         ;
+;    |unidadeDControle:unidadedecontrole| ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |main|unidadeDControle:unidadedecontrole ; unidadeDControle ; work         ;
++-----------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-----------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                            ;
-+-----------------------------------------+-----------------------------------------------------+
-; Register name                           ; Reason for Removal                                  ;
-+-----------------------------------------+-----------------------------------------------------+
-; unidadeDControle:unidadedecontrole|dvc  ; Merged with unidadeDControle:unidadedecontrole|jump ;
-; unidadeDControle:unidadedecontrole|jump ; Stuck at GND due to stuck port data_in              ;
-; PC:Pc_para_MemoriaInstru|saida[1..7]    ; Lost fanout                                         ;
-; Total Number of Removed Registers = 9   ;                                                     ;
-+-----------------------------------------+-----------------------------------------------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                 ;
-+-----------------------------------------+---------------------------+-----------------------------------------------------------------------+
-; Register name                           ; Reason for Removal        ; Registers Removed due to This Register                                ;
-+-----------------------------------------+---------------------------+-----------------------------------------------------------------------+
-; unidadeDControle:unidadedecontrole|jump ; Stuck at GND              ; PC:Pc_para_MemoriaInstru|saida[6], PC:Pc_para_MemoriaInstru|saida[5], ;
-;                                         ; due to stuck port data_in ; PC:Pc_para_MemoriaInstru|saida[4], PC:Pc_para_MemoriaInstru|saida[3], ;
-;                                         ;                           ; PC:Pc_para_MemoriaInstru|saida[2]                                     ;
-+-----------------------------------------+---------------------------+-----------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                      ;
++-----------------------------------------------+---------------------------------------------------------+
+; Register name                                 ; Reason for Removal                                      ;
++-----------------------------------------------+---------------------------------------------------------+
+; unidadeDControle:unidadedecontrole|opULA[2,3] ; Merged with unidadeDControle:unidadedecontrole|opULA[1] ;
+; unidadeDControle:unidadedecontrole|opULA[1]   ; Stuck at GND due to stuck port data_in                  ;
+; Total Number of Removed Registers = 3         ;                                                         ;
++-----------------------------------------------+---------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -258,7 +249,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 1     ;
+; Total registers                              ; 2     ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
@@ -268,6 +259,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "multiplex8bits2x1:multplexadorTOPO2"                                                ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; s    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +--------------------------------------------------------------+
 ; Port Connectivity Checks: "multiplex2x1:multiplexAntesRegis" ;
 +------+-------+----------+------------------------------------+
@@ -275,6 +275,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------+-------+----------+------------------------------------+
 ; sel  ; Input ; Info     ; Stuck at GND                       ;
 +------+-------+----------+------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "divisor_bits:divisaoDeBits"                                                                    ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; saida_extensor2 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +---------------------------------------------------+
@@ -292,16 +301,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 1                           ;
-;     plain             ; 1                           ;
-; arriav_lcell_comb     ; 2                           ;
-;     normal            ; 2                           ;
+; arriav_ff             ; 2                           ;
+;     plain             ; 2                           ;
+; arriav_lcell_comb     ; 1                           ;
+;     normal            ; 1                           ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 1                           ;
-; boundary_port         ; 5                           ;
+; boundary_port         ; 13                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 1.00                        ;
-; Average LUT depth     ; 0.50                        ;
+; Max LUT depth         ; 0.00                        ;
+; Average LUT depth     ; 0.00                        ;
 +-----------------------+-----------------------------+
 
 
@@ -310,7 +318,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -320,10 +328,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Mon May 10 01:17:26 2021
+    Info: Processing started: Sun May 16 15:17:33 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off PC -c PC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file divisor_bits.vhd
+    Info (12022): Found design unit 1: divisor_bits-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/divisor_bits.vhd Line: 15
+    Info (12023): Found entity 1: divisor_bits File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/divisor_bits.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file ula.vhd
     Info (12022): Found design unit 1: ula-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 15
     Info (12023): Found entity 1: ula File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 5
@@ -337,7 +348,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file memrom.
     Info (12022): Found design unit 1: memROM-Behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memROM.vhd Line: 12
     Info (12023): Found entity 1: memROM File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memROM.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file main.vhd
-    Info (12022): Found design unit 1: main-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 12
+    Info (12022): Found design unit 1: main-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 13
     Info (12023): Found entity 1: main File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file sum4.vhd
     Info (12022): Found design unit 1: sum4-Behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/sum4.vhd Line: 12
@@ -364,45 +375,54 @@ Info (12021): Found 2 design units, including 1 entities, in source file memram.
     Info (12022): Found design unit 1: memRAM-behavior File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memRAM.vhd Line: 15
     Info (12023): Found entity 1: memRAM File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memRAM.vhd Line: 5
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at main.vhd(135): used implicit default value for signal "registradoFake" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 135
-Info (12128): Elaborating entity "PC" for hierarchy "PC:Pc_para_MemoriaInstru" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 172
-Info (12128): Elaborating entity "sum4" for hierarchy "sum4:somador4bits" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 173
-Info (12128): Elaborating entity "memROM" for hierarchy "memROM:Memoria_DivisaoBits" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 174
+Warning (10541): VHDL Signal Declaration warning at main.vhd(147): used implicit default value for signal "registradoFake" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 147
+Warning (10036): Verilog HDL or VHDL warning at main.vhd(175): object "saidaMultiplex2Final" assigned a value but never read File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 175
+Info (12128): Elaborating entity "PC" for hierarchy "PC:Pc_para_MemoriaInstru" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 184
+Info (12128): Elaborating entity "sum4" for hierarchy "sum4:somador4bits" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 185
+Info (12128): Elaborating entity "memROM" for hierarchy "memROM:rom_para_divisao" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 186
 Warning (10492): VHDL Process Statement warning at memROM.vhd(25): signal "PC_endereco" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memROM.vhd Line: 25
-Info (12128): Elaborating entity "extender4x8" for hierarchy "extender4x8:enderecoComExtensor" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 183
-Info (12128): Elaborating entity "unidadeDControle" for hierarchy "unidadeDControle:unidadedecontrole" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 184
-Info (12128): Elaborating entity "extender2x8" for hierarchy "extender2x8:extensor2x8dadoA" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 188
-Info (12128): Elaborating entity "multiplex2x1" for hierarchy "multiplex2x1:multiplexAntesRegis" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 191
-Info (12128): Elaborating entity "registradores" for hierarchy "registradores:registradoresConexao" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 192
+Info (12128): Elaborating entity "divisor_bits" for hierarchy "divisor_bits:divisaoDeBits" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 189
+Info (12128): Elaborating entity "extender4x8" for hierarchy "extender4x8:enderecoComExtensor" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 192
+Info (12128): Elaborating entity "unidadeDControle" for hierarchy "unidadeDControle:unidadedecontrole" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 193
+Info (12128): Elaborating entity "extender2x8" for hierarchy "extender2x8:extensor2x8dadoA" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 197
+Info (12128): Elaborating entity "multiplex2x1" for hierarchy "multiplex2x1:multiplexAntesRegis" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 200
+Info (12128): Elaborating entity "registradores" for hierarchy "registradores:registradoresConexao" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 201
 Warning (10541): VHDL Signal Declaration warning at registradores.vhd(16): used implicit default value for signal "registrador" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/registradores.vhd Line: 16
-Info (12128): Elaborating entity "multiplex8bits2x1" for hierarchy "multiplex8bits2x1:multiplexDepoisRegis" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 193
-Info (12128): Elaborating entity "ula" for hierarchy "ula:ligacaoULA" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 196
+Info (12128): Elaborating entity "multiplex8bits2x1" for hierarchy "multiplex8bits2x1:multiplexDepoisRegis" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 202
+Info (12128): Elaborating entity "ula" for hierarchy "ula:ligacaoULA" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 205
 Warning (10541): VHDL Signal Declaration warning at ula.vhd(10): used implicit default value for signal "zero" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 10
 Warning (10492): VHDL Process Statement warning at ula.vhd(19): signal "opULA" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 19
 Warning (10492): VHDL Process Statement warning at ula.vhd(20): signal "entradaA" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 20
 Warning (10492): VHDL Process Statement warning at ula.vhd(20): signal "entradaB" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 20
 Warning (10492): VHDL Process Statement warning at ula.vhd(21): signal "entradaA" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 21
 Warning (10492): VHDL Process Statement warning at ula.vhd(21): signal "entradaB" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/ula.vhd Line: 21
-Info (12128): Elaborating entity "andgate" for hierarchy "andgate:dvi_e_zero" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 199
-Info (12128): Elaborating entity "memRAM" for hierarchy "memRAM:conexaomemRAM" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 206
+Info (12128): Elaborating entity "andgate" for hierarchy "andgate:dvi_e_zero" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 208
+Info (12128): Elaborating entity "memRAM" for hierarchy "memRAM:conexaomemRAM" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 215
 Warning (10445): VHDL Subtype or Type Declaration warning at memRAM.vhd(16): subtype or type has null range File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memRAM.vhd Line: 16
 Warning (10873): Using initial value X (don't care) for net "saidaLeituraDado" at memRAM.vhd(11) File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/memRAM.vhd Line: 11
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "parte1[1]" is stuck at GND File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 8
-    Warning (13410): Pin "parte1[2]" is stuck at GND File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 8
-    Warning (13410): Pin "parte1[3]" is stuck at GND File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 8
+    Warning (13410): Pin "opcodeteste[1]" is stuck at GND File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 9
+    Warning (13410): Pin "opcodeteste[2]" is stuck at GND File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 9
+    Warning (13410): Pin "opcodeteste[3]" is stuck at GND File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 9
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 7 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 6 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 1 input pins
+Warning (21074): Design contains 7 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "teste[1]" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 8
+    Warning (15610): No output dependent on input pin "teste[2]" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 8
+    Warning (15610): No output dependent on input pin "teste[3]" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 8
+    Warning (15610): No output dependent on input pin "teste[4]" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 8
+    Warning (15610): No output dependent on input pin "teste[5]" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 8
+    Warning (15610): No output dependent on input pin "teste[6]" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 8
+    Warning (15610): No output dependent on input pin "teste[7]" File: C:/githubProject/AOC_CristianoReginaldo_UFRR_2020/AOC/main.vhd Line: 8
+Info (21057): Implemented 15 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 9 input pins
     Info (21059): Implemented 4 output pins
-    Info (21061): Implemented 1 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 16 warnings
-    Info: Peak virtual memory: 4839 megabytes
-    Info: Processing ended: Mon May 10 01:17:39 2021
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:24
+    Info (21061): Implemented 2 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 25 warnings
+    Info: Peak virtual memory: 4837 megabytes
+    Info: Processing ended: Sun May 16 15:17:55 2021
+    Info: Elapsed time: 00:00:22
+    Info: Total CPU time (on all processors): 00:00:23
 
 

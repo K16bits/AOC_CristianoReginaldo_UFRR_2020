@@ -5,7 +5,8 @@ use IEEE.std_logic_unsigned.all;
 entity main is
 port(
     clk : in std_logic;
-    parte1 : out std_logic_vector(3 downto 0)
+    teste : in std_logic_vector(7 downto 0);
+    opcodeteste : out std_logic_vector(3 downto 0)
 );
 end main;
 
@@ -15,6 +16,17 @@ component PC is port (
     clock: in std_logic;
     entrada: in std_logic_vector(7 downto 0);
     saida: out std_logic_vector(7 downto 0)
+);
+end component;
+
+component divisor_bits is port (
+    entrada : in std_logic_vector(7 downto 0);
+    saida_controle : out std_logic_vector(3 downto 0);
+    saida_regA : out std_logic_vector(1 downto 0);
+    saida_regB : out std_logic_vector(1 downto 0);
+
+    saida_extensor1 : out std_logic_vector(3 downto 0);
+    saida_extensor2 : out std_logic_vector(1 downto 0)
 );
 end component;
 
@@ -115,8 +127,8 @@ component memRAM is port(
 end component;
 
 signal aux1 : std_logic_vector(7 downto 0);
-signal saida1 : std_logic_vector(7 downto 0);
-signal saida2 : std_logic_vector(7 downto 0);
+signal entrada1 : std_logic_vector(7 downto 0);
+signal saida01 : std_logic_vector(7 downto 0);
 
 -- divisao de bits para a unidade de controle
 signal bitControle : std_logic_vector (7 downto 4);
@@ -169,16 +181,18 @@ signal saidaMultidaRAM : std_logic_vector(7 downto 0);
 ----------------------------------------------------------------------
 
 begin
-    Pc_para_MemoriaInstru : PC port map(clk,saidaMultiplex2Final,saida1);
-    somador4bits : sum4 port map(saida1,"00000001",saidaDoSomador);
-    Memoria_DivisaoBits : memROM port map(clk,saida1,saida2);
+    Pc_para_MemoriaInstru : PC port map(clk,teste,entrada1);
+    somador4bits : sum4 port map(entrada1,"00000001",saidaDoSomador);
+    rom_para_divisao : memROM port map(clk,entrada1,saida01);
 	
-    --Divisão de bits
-	bitControle <= saida2(7 downto 4);
-	registradoA <= saida2(3 downto 2);
-	registradoB <= saida2(1 downto 0);
-    enderecobits <= saida2(3 downto 0); ----------------------- Endereço + extensor------------------
+    --------------------- 1 extensor de sinal 4x8 depois da ROM  -------------------------------------
+    extensor1_4x8 : extender4x8 port map (saida01)
+    --------------------------------------------------------------------------------------------------
 
+
+    --Divisão de bits
+    divisaoDeBits : divisor_bits port map(saida01,bitControle,registradoA,registradoB,enderecobits);
+	
     -----------------------------------------------------------------------------------------------------
     enderecoComExtensor : extender4x8 port map(enderecobits,enderecobits_saida);
     unidadedecontrole : unidadeDControle port map (clk,bitControle,opUlaOUT,origULAOUT,memLerOUT,memEscOUT,mem_para_regOUT,regEscOUT,dvcOUT,jumpOUT);
@@ -208,9 +222,8 @@ begin
     multplexadorDEPOISRAM : multiplex8bits2x1 port map(saidaLeituraDadoOUT,saidaResultULA,mem_para_regOUT,saidaMultidaRAM);
     ----------------------------------------------------------------------------------------------------------
     ---------------------------------------- PORTAS DE RESULTADOS --------------------------------------------
-    parte1 <= bitControle;
+    opcodeteste <= opUlaOUT;
    
-
     --------------------------------------------------------------------------------------------------------------
 
 end behavior;
